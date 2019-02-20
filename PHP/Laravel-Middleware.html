@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Laravel 中间件 | Azure&#39;s Notebook</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.003d6652.css" as="style"><link rel="preload" href="/assets/js/app.ed19ba6d.js" as="script"><link rel="preload" href="/assets/js/27.8d89063d.js" as="script"><link rel="prefetch" href="/assets/js/10.725adfc7.js"><link rel="prefetch" href="/assets/js/11.d37d9b8b.js"><link rel="prefetch" href="/assets/js/12.7381f097.js"><link rel="prefetch" href="/assets/js/13.7bfd8c5c.js"><link rel="prefetch" href="/assets/js/14.0851aedb.js"><link rel="prefetch" href="/assets/js/15.4aa69a87.js"><link rel="prefetch" href="/assets/js/16.e91cefc8.js"><link rel="prefetch" href="/assets/js/17.bf11e506.js"><link rel="prefetch" href="/assets/js/18.cfde5974.js"><link rel="prefetch" href="/assets/js/19.6182ee07.js"><link rel="prefetch" href="/assets/js/2.af91441d.js"><link rel="prefetch" href="/assets/js/20.be8f3590.js"><link rel="prefetch" href="/assets/js/21.0c23aafe.js"><link rel="prefetch" href="/assets/js/22.72f4f18e.js"><link rel="prefetch" href="/assets/js/23.963bec41.js"><link rel="prefetch" href="/assets/js/24.e713fe21.js"><link rel="prefetch" href="/assets/js/25.b1041c73.js"><link rel="prefetch" href="/assets/js/26.db6b8971.js"><link rel="prefetch" href="/assets/js/28.c52d33c4.js"><link rel="prefetch" href="/assets/js/29.76a01272.js"><link rel="prefetch" href="/assets/js/3.3e582861.js"><link rel="prefetch" href="/assets/js/30.c68724aa.js"><link rel="prefetch" href="/assets/js/31.527e2096.js"><link rel="prefetch" href="/assets/js/32.e1cfa260.js"><link rel="prefetch" href="/assets/js/4.3bfa2392.js"><link rel="prefetch" href="/assets/js/5.1a95e6c3.js"><link rel="prefetch" href="/assets/js/6.aedd08db.js"><link rel="prefetch" href="/assets/js/7.45f2728a.js"><link rel="prefetch" href="/assets/js/8.5fcdd9e7.js"><link rel="prefetch" href="/assets/js/9.778a7fc4.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.003d6652.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Azure's Notebook</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <ul class="sidebar-links"><li><div class="sidebar-group first collapsable"><p class="sidebar-heading"><span>Data-Structure</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Network</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Linux</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>PHP</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/PHP/" class="sidebar-link">PHP 笔记</a></li><li><a href="/PHP/Control-Inversion.html" class="sidebar-link">PHP 控制反转</a></li><li><a href="/PHP/Autoload-and-Composer.html" class="sidebar-link">PHP 类自加载与 Composer 原理</a></li><li><a href="/PHP/Object-oriented.html" class="sidebar-link">PHP 面向对象</a></li><li><a href="/PHP/Laravel-Middleware.html" class="active sidebar-link">Laravel 中间件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/PHP/Laravel-Middleware.html#_1-实现原理" class="sidebar-link">1. 实现原理</a></li><li class="sidebar-sub-header"><a href="/PHP/Laravel-Middleware.html#_2-源码剖析" class="sidebar-link">2. 源码剖析</a></li><li class="sidebar-sub-header"><a href="/PHP/Laravel-Middleware.html#_3-参考资料" class="sidebar-link">3. 参考资料</a></li></ul></li><li><a href="/PHP/Install-Laravel-echo-server.html" class="sidebar-link">安装 Laravel-echo-server</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>MySQL</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Redis</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="laravel-中间件"><a href="#laravel-中间件" aria-hidden="true" class="header-anchor">#</a> Laravel 中间件</h1> <h2 id="_1-实现原理"><a href="#_1-实现原理" aria-hidden="true" class="header-anchor">#</a> 1. 实现原理</h2> <h2 id="_2-源码剖析"><a href="#_2-源码剖析" aria-hidden="true" class="header-anchor">#</a> 2. 源码剖析</h2> <div class="language- extra-class"><pre class="language-text"><code>基 于 源 码 的 简 化 示 例 代 码
+</code></pre></div><div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">/* 实现中间件所依赖的「 管道 」类 */</span>
+<span class="token keyword">class</span> <span class="token class-name">Pipeline</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token variable">$passable</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">passable</span> <span class="token operator">=</span> <span class="token variable">$passable</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">through</span><span class="token punctuation">(</span><span class="token variable">$pipes</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">pipes</span> <span class="token operator">=</span> <span class="token variable">$pipes</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">then</span><span class="token punctuation">(</span>Closure <span class="token variable">$destination</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    	<span class="token comment">/* 函数 array_reduce */</span>
+    	<span class="token comment">/* 参数一 : 需要迭代处理的数组 */</span>
+    	<span class="token comment">/* 参数二 : 回调函数 */</span>
+    	<span class="token comment">/* 参数三 : 初始值 */</span>
+        <span class="token variable">$pipeline</span> <span class="token operator">=</span> <span class="token function">array_reduce</span><span class="token punctuation">(</span>
+            <span class="token function">array_reverse</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">pipes</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+            <span class="token comment">/* 匿名函数 */</span>
+            <span class="token comment">/* 参数一 : 携带上次迭代里的结果 ; 第一次迭代是「 初始值 」 */</span>
+            <span class="token comment">/* 参数二 : 携带了本次迭代的数组元素 */</span>
+            <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$stack</span><span class="token punctuation">,</span> <span class="token variable">$pipe</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	            <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$passable</span><span class="token punctuation">)</span> <span class="token keyword">use</span> <span class="token punctuation">(</span><span class="token variable">$stack</span><span class="token punctuation">,</span> <span class="token variable">$pipe</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	            	<span class="token comment">/* 结果对应「 中间件 」的 handle() */</span>
+	                <span class="token keyword">return</span> <span class="token variable">$pipe</span><span class="token punctuation">(</span><span class="token variable">$passable</span><span class="token punctuation">,</span> <span class="token variable">$stack</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+	        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+	        <span class="token variable">$destination</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$pipeline</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">passable</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* 数组元素对应「 中间件 」的 handle() */</span>
+<span class="token variable">$middleware</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">,</span> Closure <span class="token variable">$next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	    <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">count</span> <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	    <span class="token keyword">return</span> <span class="token variable">$next</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">,</span> Closure <span class="token variable">$next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	    <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">count</span> <span class="token operator">-</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	    <span class="token keyword">return</span> <span class="token variable">$next</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* 路由最终指向的可执行内容 */</span>
+<span class="token variable">$destination</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">view</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'welcome'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* 类实例化执行后得到响应 */</span>
+<span class="token variable">$response</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Pipeline</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span>
+	<span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">through</span><span class="token punctuation">(</span><span class="token variable">$middleware</span><span class="token punctuation">)</span>
+	<span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token variable">$destination</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_2-1-问题点"><a href="#_2-1-问题点" aria-hidden="true" class="header-anchor">#</a> 2.1 问题点</h3> <h4 id="_2-1-1-函数-array-resereve-的作用"><a href="#_2-1-1-函数-array-resereve-的作用" aria-hidden="true" class="header-anchor">#</a> 2.1.1 函数 array_resereve() 的作用</h4> <p>源码中了解到定义中间件数组是有执行顺序的。</p> <div class="language- extra-class"><pre class="language-text"><code>Illuminate\Routing\Route::class
+</code></pre></div><div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">/**
+* Sort the given middleware by priority.
+*
+* @param  \Illuminate\Support\Collection  $middlewares
+* @return array
+*/</span>
+<span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function">sortMiddleware</span><span class="token punctuation">(</span>Collection <span class="token variable">$middlewares</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">SortedMiddleware</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">middlewarePriority</span><span class="token punctuation">,</span> <span class="token variable">$middlewares</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>但按照源码来执行结果是与数组的顺序相反的，因为 <code>array_reduce</code> 的回调函数返回的是一个匿名函数。而匿名函数里套匿名函数的情况与递归函数相似，再而递归可由栈来实现，因此最先迭代的反而是最后执行的。</p> <div class="language- extra-class"><pre class="language-text"><code>等 价 于 源 码 简 化 示 例 的 代 码
+</code></pre></div><div class="language-php extra-class"><pre class="language-php"><code><span class="token variable">$response</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">count</span> <span class="token operator">-</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$request</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	    <span class="token variable">$request</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">count</span> <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	    <span class="token keyword">return</span> <span class="token function">view</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'welcome'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token variable">$request</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="_2-1-2-变量-destination-的详情"><a href="#_2-1-2-变量-destination-的详情" aria-hidden="true" class="header-anchor">#</a> 2.1.2 变量 $destination 的详情</h4> <p>示例中明显地看到 <code>$destination</code> 的值是 Laravel 初始化时的根路由匿名函数，因此这里简化了关联路由选择的详情。事实上示例中的中间件是全局中间件，而简化的部分还有一次路由级的中间件的执行。</p> <h2 id="_3-参考资料"><a href="#_3-参考资料" aria-hidden="true" class="header-anchor">#</a> 3. 参考资料</h2> <ol><li><a href="https://juejin.im/post/5b41fb91518825210575c4f0" target="_blank" rel="noopener noreferrer">推荐一个 PHP 管道插件 League\Pipeline<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li><a href="https://www.insp.top/article/realization-of-pipeline-component-for-laravel" target="_blank" rel="noopener noreferrer">Laravel Pipeline 组件的实现<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ol></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/PHP/Object-oriented.html" class="prev">
+          PHP 面向对象
+        </a></span> <span class="next"><a href="/PHP/Install-Laravel-echo-server.html">
+          安装 Laravel-echo-server
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/27.8d89063d.js" defer></script><script src="/assets/js/app.ed19ba6d.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>OAuth2 | Azure&#39;s Notebook</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.003d6652.css" as="style"><link rel="preload" href="/assets/js/app.ed19ba6d.js" as="script"><link rel="preload" href="/assets/js/14.0851aedb.js" as="script"><link rel="prefetch" href="/assets/js/10.725adfc7.js"><link rel="prefetch" href="/assets/js/11.d37d9b8b.js"><link rel="prefetch" href="/assets/js/12.7381f097.js"><link rel="prefetch" href="/assets/js/13.7bfd8c5c.js"><link rel="prefetch" href="/assets/js/15.4aa69a87.js"><link rel="prefetch" href="/assets/js/16.e91cefc8.js"><link rel="prefetch" href="/assets/js/17.bf11e506.js"><link rel="prefetch" href="/assets/js/18.cfde5974.js"><link rel="prefetch" href="/assets/js/19.6182ee07.js"><link rel="prefetch" href="/assets/js/2.af91441d.js"><link rel="prefetch" href="/assets/js/20.be8f3590.js"><link rel="prefetch" href="/assets/js/21.0c23aafe.js"><link rel="prefetch" href="/assets/js/22.72f4f18e.js"><link rel="prefetch" href="/assets/js/23.963bec41.js"><link rel="prefetch" href="/assets/js/24.e713fe21.js"><link rel="prefetch" href="/assets/js/25.b1041c73.js"><link rel="prefetch" href="/assets/js/26.db6b8971.js"><link rel="prefetch" href="/assets/js/27.8d89063d.js"><link rel="prefetch" href="/assets/js/28.c52d33c4.js"><link rel="prefetch" href="/assets/js/29.76a01272.js"><link rel="prefetch" href="/assets/js/3.3e582861.js"><link rel="prefetch" href="/assets/js/30.c68724aa.js"><link rel="prefetch" href="/assets/js/31.527e2096.js"><link rel="prefetch" href="/assets/js/32.e1cfa260.js"><link rel="prefetch" href="/assets/js/4.3bfa2392.js"><link rel="prefetch" href="/assets/js/5.1a95e6c3.js"><link rel="prefetch" href="/assets/js/6.aedd08db.js"><link rel="prefetch" href="/assets/js/7.45f2728a.js"><link rel="prefetch" href="/assets/js/8.5fcdd9e7.js"><link rel="prefetch" href="/assets/js/9.778a7fc4.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.003d6652.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Azure's Notebook</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <ul class="sidebar-links"><li><div class="sidebar-group first collapsable"><p class="sidebar-heading"><span>Data-Structure</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>Network</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/Network/" class="sidebar-link">Network 笔记</a></li><li><a href="/Network/TCP.html" class="sidebar-link">TCP 协议</a></li><li><a href="/Network/Socket.html" class="sidebar-link">Socket</a></li><li><a href="/Network/HTTP.html" class="sidebar-link">HTTP 协议</a></li><li><a href="/Network/Websocket-first-face.html" class="sidebar-link">初识 Websocket 协议</a></li><li><a href="/Network/OAuth2.html" class="active sidebar-link">OAuth2</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Network/OAuth2.html#_1-oauth-概念" class="sidebar-link">1. OAuth 概念</a></li><li class="sidebar-sub-header"><a href="/Network/OAuth2.html#_2-授权模式" class="sidebar-link">2. 授权模式</a></li></ul></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Linux</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>PHP</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>MySQL</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Redis</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="oauth2"><a href="#oauth2" aria-hidden="true" class="header-anchor">#</a> OAuth2</h1> <h2 id="_1-oauth-概念"><a href="#_1-oauth-概念" aria-hidden="true" class="header-anchor">#</a> 1. OAuth 概念</h2> <p>OAuth 是一个关于授权 ( Authorization ) 的开放网络标准，在全世界得到广泛应用，目前的版本是2.0版。思想的重点在于 <strong>用户</strong> 与 <strong>服务提供商</strong> ，<strong>客户端</strong> 其次。还有 <strong>&quot;获取资源者&quot;</strong> 需要用户 <strong>授权</strong> 、获取资源时需要使用 <strong>令牌</strong>。</p> <p>OAuth 主要由以下角色组成 :</p> <ul><li>Resource Owner ( 用户 )</li> <li>User Agent ( 浏览器 )</li> <li>Client ( 客户端 )</li> <li>Resource Server ( 资源服务器 )</li> <li>Authorization Server ( 授权服务器 )</li></ul> <p>用户通过浏览器访问客户端 ( 对于所依赖的资源提供方来说 ) ，如果需要调取资源服务器的资源，则需要到授权服务器上由用户本人登录，加入用户同意后则给予客户端授权，客户端才向授权服务器获取令牌，之客户端后可以凭令牌在资源服务器上使用资源。</p> <h2 id="_2-授权模式"><a href="#_2-授权模式" aria-hidden="true" class="header-anchor">#</a> 2. 授权模式</h2> <p>OAuth 2.0 授权模式有四种 :</p> <ol><li>Authorization Code Grant ( 授权码授予 )</li> <li>Implicit Grant ( 隐式授予 )</li> <li>Resource Owner Password Credentials Grant ( 用户密码授予 )</li> <li>Client Credentials Grant ( 客户端授予 )</li></ol> <h3 id="_2-1-authorization-code-grant-授权码授予"><a href="#_2-1-authorization-code-grant-授权码授予" aria-hidden="true" class="header-anchor">#</a> 2.1 Authorization Code Grant ( 授权码授予 )</h3> <p>意义上最严谨的模式，分为 用户、服务提供商 和 客户端 三方，并且客户端需要有后端 ( Endpoint ) 辅助。过程中的 得到授权码 和 获取用户令牌 的部分是在 服务提供商 和 客户端 双方的后端处理，不会对外 ( 包括用户 ) 暴露。</p> <div class="language- extra-class"><pre class="language-text"><code>+----------+
+| Resource |
+|   Owner  |
+|          |
++----------+
+     ^
+     |
+    (B)
++----|-----+          Client Identifier      +---------------+
+|         -+----(A)-- &amp; Redirection URI ----&gt;|               |
+|  User-   |                                 | Authorization |
+|  Agent  -+----(B)-- User authenticates ---&gt;|     Server    |
+|          |                                 |               |
+|         -+----(C)-- Authorization Code ---&lt;|               |
++-|----|---+                                 +---------------+
+  |    |                                         ^      v
+ (A)  (C)                                        |      |
+  |    |                                         |      |
+  ^    v                                         |      |
++---------+                                      |      |
+|         |&gt;---(D)-- Authorization Code ---------'      |
+|  Client |          &amp; Redirection URI                  |
+|         |                                             |
+|         |&lt;---(E)----- Access Token -------------------'
++---------+       (w/ Optional Refresh Token)
+</code></pre></div><p>流程图步骤详解 :</p> <p>( 步骤 A ) 客户端需要依赖用户在的服务提供商的资源，而获取用户的资源需要持有令牌，但在获取令牌之前需要用户在服务提供商上 ( 登录并 ) 给予客户端授权，因此客户端通过浏览器 GET 请求服务提供商的授权服务器 ；GET 请求中包含 客户端的身份标识 和 客户端的后端回调地址 ( 在像服务提供商申请客户端时的地址 ) 。</p> <p>( 步骤 B ) 用户在浏览器上选择是否给予客户端授权。</p> <p>( 步骤 C ) 授权服务器携带用户的选择结果 ( 同意 或 拒绝 ) POST 请求授权服务器自身进行处理 ，然后 ( 于 URI 查询字符串中 ) 携带处理结果 ( 授权码 或 拒绝信息 ) 将浏览器重定向 ( HTTP 302 ) 到 客户端的后端回调地址 ；浏览器将授权结果&quot;转交&quot;给 客户端的后端。</p> <p>( 步骤转折点 ) 处理假如用户拒绝的业务逻辑，也不会有后面的步骤。</p> <p>( 步骤 D ) 客户端的后端在内部通过 HTTP 请求 ( 包含 客户端的身份标识、密钥 和 授权码 ) 获取用户的令牌。</p> <p>( 步骤 E ) 客户端的后端得到用户的令牌。</p> <p>( 后续的步骤 ) 客户端的后端使用用户的令牌获取资源服务器上的资源，资源处理以后最终响应浏览器，用户看到结果。</p> <h3 id="_2-2-implicit-grant-隐式授予"><a href="#_2-2-implicit-grant-隐式授予" aria-hidden="true" class="header-anchor">#</a> 2.2 Implicit Grant ( 隐式授予 )</h3> <p>OAuth2 隐式授权是规范中安全疑虑最多的授权方式。隐式授予是针对客户端是 Native APP 设计的，因为 Native APP 可能没有架设在公网上的后端服务器，因而无法实现授权码授予。客户端获取的用户令牌是直接放置在 URI 中暴露出来，同时也不会获取到将刷新令牌。单纯的 Native APP 无法监听授权服务器的重定向，所以需要内建服务器 ( Web-Hosted Client Resource ) 来监听重定向，才能提取出用户令牌。</p> <blockquote><p>因为不懂 Native APP 的编程，所以可能理解不对。</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>+----------+
+| Resource |
+|  Owner   |
+|          |
++----------+
+     ^
+     |
+    (B)
++----|-----+          Client Identifier     +---------------+
+|         -+----(A)-- &amp; Redirection URI ---&gt;|               |
+|  User-   |                                | Authorization |
+|  Agent  -|----(B)-- User authenticates --&gt;|     Server    |
+|          |                                |               |
+|          |&lt;---(C)--- Redirection URI ----&lt;|               |
+|          |          with Access Token     +---------------+
+|          |            in Fragment
+|          |                                +---------------+
+|          |----(D)--- Redirection URI ----&gt;|   Web-Hosted  |
+|          |          without Fragment      |     Client    |
+|          |                                |    Resource   |
+|     (F)  |&lt;---(E)------- Script ---------&lt;|               |
+|          |                                +---------------+
++-|--------+
+  |    |
+ (A)  (G) Access Token
+  |    |
+  ^    v
++---------+
+|         |
+|  Client |
+|         |
++---------+
+</code></pre></div><p>流程图步骤详解 :</p> <p>( 步骤 A ) 客户端需要依赖用户在的服务提供商的资源，而获取用户的资源需要持有令牌，但在获取令牌之前需要用户在服务提供商上 ( 登录并 ) 给予客户端授权，因此客户端通过浏览器 GET 请求服务提供商的授权服务器 ；GET 请求中包含 客户端的身份标识 和 客户端的后端回调地址 ( 在像服务提供商申请客户端时的地址 ) 。</p> <p>( 步骤 B ) 用户在浏览器上选择是否给予客户端授权。</p> <p>( 步骤 C ) 授权服务器携带用户的选择结果 ( 同意 或 拒绝 ) POST 请求授权服务器自身进行处理 ，然后 ( 于 URI 片段标识符中 ) 携带处理结果 ( 授权码 或 拒绝信息 ) 将浏览器重定向 ( HTTP 302 ) 到 客户端 ( 内建 ) 的后端 ( 即 Web-Hosted Client Resource ) 回调地址。</p> <p>( 步骤 D ) 浏览器浏览器重定向到客户端的后端。</p> <p>( 步骤 E ) 客户端的后端提供 ( 响应 ) 脚本给浏览器。</p> <p>( 步骤 F ) 浏览器运行脚本提取用户令牌。</p> <p>( 步骤 G ) 浏览器传递用户令牌到客户端中。</p> <h3 id="_2-3-resource-owner-password-credentials-grant-用户密码授予"><a href="#_2-3-resource-owner-password-credentials-grant-用户密码授予" aria-hidden="true" class="header-anchor">#</a> 2.3 Resource Owner Password Credentials Grant ( 用户密码授予 )</h3> <div class="language- extra-class"><pre class="language-text"><code>+----------+
+| Resource |
+|  Owner   |
+|          |
++----------+
+     v
+     |    Resource Owner
+    (A) Password Credentials
+     |
+     v
++---------+                                  +---------------+
+|         |&gt;--(B)---- Resource Owner -------&gt;|               |
+|         |         Password Credentials     | Authorization |
+| Client  |                                  |     Server    |
+|         |&lt;--(C)---- Access Token ---------&lt;|               |
+|         |    (w/ Optional Refresh Token)   |               |
++---------+                                  +---------------+
+</code></pre></div><h3 id="_2-4-client-credentials-grant-客户端授予"><a href="#_2-4-client-credentials-grant-客户端授予" aria-hidden="true" class="header-anchor">#</a> 2.4 Client Credentials Grant ( 客户端授予 )</h3></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/Network/Websocket-first-face.html" class="prev">
+          初识 Websocket 协议
+        </a></span> <span class="next"><a href="/Linux/">
+          Linux 笔记
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/14.0851aedb.js" defer></script><script src="/assets/js/app.ed19ba6d.js" defer></script>
+  </body>
+</html>
